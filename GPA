@@ -1,0 +1,67 @@
+
+''' This method calculates the grade points for one
+class.  If the grade is and 'A' or 'a' then 4 grade points
+have been earned.  If 'B' then 3, etc.  If the grade is a
+'D', etc.  In addition, if ap is true, then 1 point is added
+to the point total, UNLESS the grade is a D or F.
+Print AND then return the number of grade points'''
+GPA = 0
+credList = []
+gradeList = [['C',True], ['D',True], ['A',False]]
+
+def calc_grade_points(grade, ap):
+    if grade.upper() == 'A':
+        if ap == True:
+            credList.append(5)
+            return 'AP and A, 5'
+            
+        else:
+            credList.append(4)
+            return 'No AP but A, 4'
+            
+
+    if grade.upper() == 'B':
+        if ap == True:
+            credList.append(4)
+            return 'AP and B, 4'
+        else:
+            credList.append(3)
+            return 'No AP but B, 3'
+
+    if grade.upper() == 'C':
+        if ap == True:
+            credList.append(3)
+            return 'AP and C, 3'
+        else:
+            credList.append(2)
+            return 'No AP but C, 2'
+
+    if grade.upper() == 'D':
+        if ap == True:
+            credList.append(1)
+            return 'No AP and D, 1'
+        else:
+            credList.append(1)
+            return 'No AP but D, 1' 
+
+    if grade.upper() == 'F':
+        if ap == True:
+            credList.append(0)
+            return 'No AP and F, 0'
+        else:
+            credList.append(0)
+            return 'No AP but F, 0'                   
+            
+for stuff in gradeList:
+    calc_grade_points(stuff[0], stuff[1])
+
+for num in credList:
+    GPA += num
+
+GPA = float(GPA)/float(len(credList))
+
+GPA = str(GPA)
+GPA = GPA + "00"
+GPA = GPA[0:4]
+
+print("Your GPA is {}".format(GPA))
